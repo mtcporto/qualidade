@@ -1,0 +1,79 @@
+    /* Estilos adicionais podem ser adicionados aqui */
+    /* Estilos básicos */
+    body {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding: 0;
+      }
+  
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+  
+      h1, h2, h3 {
+        margin-top: 0;
+      }
+  
+      /* Estilos para o modo claro */
+      body {
+        background-color: #f8f8f8;
+        color: #333;
+      }
+  
+      .container {
+        background-color: #fff;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      }
+  
+      header {
+        position: relative;
+        background-color: #333;
+        color: #f8f8f8;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+  
+      .dark-mode-toggle {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        color: #f8f8f8;
+        font-size: 24px;
+      }
+  
+      /* Estilos para o modo escuro */
+      body.dark {
+        background-color: #333;
+        color: #f8f8f8;
+      }
+  
+      .container.dark {
+        background-color: #444;
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+      }
+      .fa-sun {
+        color: yellow;
+      }
+
+
+  
+      /* Dark Mode */
+      .dark {
+        background-color: #1f2937;
+        color: #f8fafc;
+      }
+  
+      .dark th,
+      .dark td {
+        border-color: #374151;
+      }
+  
+      .dark .bg-gray-100 {
+        background-color: #4b5563;
+      }
