@@ -14,16 +14,9 @@ O coletor usa RSS quando a matéria está no feed e busca HTML como fallback. De
 
 ## Primeira versão do coletor
 
-`collector.py` consulta semanalmente Jornal da Paraíba, F5 Online e Repórter PB. Ele encontra matérias recentes no RSS, baixa o HTML, extrai trechos impróprios e grava `data.json`. Cada trecho recebe confiança `alta` quando aparece em pelo menos duas fontes; caso contrário, fica marcado como `revisar`. A SUDEMA é mantida no JSON somente como referência oficial, com `official_reference_automated: false`.
+`lib/boletim.js` é usado pela Vercel Function `api/boletim.js`. A função consulta semanalmente Jornal da Paraíba, F5 Online e Repórter PB, encontra matérias recentes no RSS ou na busca HTML, extrai os trechos impróprios e devolve um JSON normalizado. Cada trecho recebe confiança `alta` quando aparece em pelo menos duas fontes; caso contrário, fica marcado como `revisar`. A SUDEMA é mantida no JSON somente como referência oficial, com `official_reference_automated: false`.
 
-Para executar:
-
-```bash
-pip install -r requirements.txt
-python3 collector.py --output data.json
-```
-
-O painel tenta ler `data.json` antes do endpoint antigo. Recomenda-se executar o coletor uma vez na sexta-feira de manhã e publicar o JSON somente após conferir divergências.
+O cron da Vercel chama `/api/cron/boletim` às sextas-feiras, às 8h no horário da Paraíba (`11:00 UTC`). É necessário configurar `CRON_SECRET` no projeto. A função usa cache por algumas horas, e `data.json` permanece como fallback para quando as fontes estiverem indisponíveis.
 
 ## Rodar localmente
 
