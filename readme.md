@@ -1,32 +1,36 @@
-# Sistema de Monitoramento da Qualidade de Praias
+# Maré Clara
 
-## Descrição
-Este projeto consiste em uma aplicação web que exibe informações sobre a qualidade das águas das praias da Paraíba, baseado nos dados fornecidos pela SUDEMA (Superintendência de Administração do Meio Ambiente). O sistema permite aos usuários visualizar quais praias estão próprias ou impróprias para banho, ajudando na tomada de decisão sobre qual praia visitar.
+Painel simples para acompanhar a balneabilidade do litoral da Paraíba.
 
-## Funcionalidades
-- Visualização das praias classificadas como próprias ou impróprias para banho
-- Filtragem por qualidade da água (própria/imprópria)
-- Design responsivo para acesso em diversos dispositivos
-- Indicação visual clara da qualidade (vermelho para impróprio, verde para próprio)
-- Exibição da data e hora atual
-- Exibição do período de amostragem e validade da classificação
+## Situação atual
 
-## Tecnologias Utilizadas
-- **HTML5**: Estruturação da página web
-- **CSS3**: Estilização da interface
-- **JavaScript**: Lógica de interatividade e manipulação dos dados
-- **Tailwind CSS**: Framework para estilização rápida e responsiva
-- **Luxon**: Biblioteca para manipulação de data e hora
-- **Font Awesome**: Biblioteca de ícones para interface
-- **Fetch API**: Para requisições HTTP e obtenção de dados remotos
-- **DOMParser**: Para manipulação do HTML obtido via scraping
-- **Media Queries**: Para garantir responsividade em diferentes tamanhos de tela
+O coletor antigo dependia do HTML da página da SUDEMA e do endpoint `mtcporto2.pythonanywhere.com`. A SUDEMA passou a publicar o boletim em PDF e o endpoint legado atualmente retorna uma página “Coming Soon”, por isso a interface agora trata a indisponibilidade explicitamente e não mostra números inventados.
 
-## Como usar
-1. Acesse a página da aplicação
-2. Visualize a lista de praias de acordo com sua qualidade
-3. Use o seletor na parte superior para alternar entre praias próprias e impróprias
-4. Observe a data de validade da classificação para garantir que as informações estão atualizadas
+## Fontes usadas
 
-## Fonte de dados
-Os dados são obtidos diretamente do site oficial da SUDEMA, garantindo informações atualizadas sobre a condição das praias.
+A primeira versão consulta Jornal da Paraíba, F5 Online e Repórter PB. RSS e páginas de busca são detalhes internos da coleta; o usuário vê apenas as matérias efetivamente usadas no boletim. A SUDEMA permanece como referência oficial para conferência humana e não é lida automaticamente.
+
+O coletor usa RSS quando a matéria está no feed e busca HTML como fallback. Depois baixa a matéria, extrai período/validade e trechos impróprios, e salva o último boletim normalizado em JSON. Assim o navegador não depende de CORS nem de um proxy público.
+
+## Primeira versão do coletor
+
+`collector.py` consulta semanalmente Jornal da Paraíba, F5 Online e Repórter PB. Ele encontra matérias recentes no RSS, baixa o HTML, extrai trechos impróprios e grava `data.json`. Cada trecho recebe confiança `alta` quando aparece em pelo menos duas fontes; caso contrário, fica marcado como `revisar`. A SUDEMA é mantida no JSON somente como referência oficial, com `official_reference_automated: false`.
+
+Para executar:
+
+```bash
+pip install -r requirements.txt
+python3 collector.py --output data.json
+```
+
+O painel tenta ler `data.json` antes do endpoint antigo. Recomenda-se executar o coletor uma vez na sexta-feira de manhã e publicar o JSON somente após conferir divergências.
+
+## Rodar localmente
+
+Como o projeto é estático, qualquer servidor HTTP simples funciona:
+
+```bash
+python3 -m http.server 8080
+```
+
+Depois, abra `http://localhost:8080`.

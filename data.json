@@ -1,0 +1,177 @@
+{
+  "generated_at": "2026-09-07T02:12:37.944270+00:00",
+  "periodo": "31 de agosto a 3 de setembro",
+  "validade": "11 de setembro",
+  "confidence": "alta",
+  "records": [
+    {
+      "municipio": "João Pessoa",
+      "praia": "Manaíra",
+      "ponto": "Rua Geraldo Costa",
+      "qualidade": "Imprópria",
+      "sources": [
+        "F5 Online",
+        "Jornal da Paraíba"
+      ],
+      "confidence": "alta"
+    },
+    {
+      "municipio": "João Pessoa",
+      "praia": "Penha",
+      "ponto": "Rua Ver. Mario Torres de Andrade",
+      "qualidade": "Imprópria",
+      "sources": [
+        "F5 Online",
+        "Jornal da Paraíba"
+      ],
+      "confidence": "alta"
+    },
+    {
+      "municipio": "João Pessoa",
+      "praia": "Penha",
+      "ponto": "Avenida Praia dos Pescadores",
+      "qualidade": "Imprópria",
+      "sources": [
+        "F5 Online",
+        "Jornal da Paraíba"
+      ],
+      "confidence": "alta"
+    },
+    {
+      "municipio": "Pitimbu",
+      "praia": "Maceió",
+      "ponto": "Avenida Beira Mar",
+      "qualidade": "Imprópria",
+      "sources": [
+        "F5 Online",
+        "Jornal da Paraíba"
+      ],
+      "confidence": "alta"
+    },
+    {
+      "municipio": "Pitimbu",
+      "praia": "Guarita",
+      "ponto": "Avenida Beira Mar",
+      "qualidade": "Imprópria",
+      "sources": [
+        "F5 Online",
+        "Jornal da Paraíba"
+      ],
+      "confidence": "alta"
+    }
+  ],
+  "articles": [
+    {
+      "source": "Jornal da Paraíba",
+      "title": "Cinco trechos de praia são considerados impróprios para banho na Paraíba; saiba quais",
+      "url": "https://jornaldaparaiba.com.br/meio-ambiente/praias-improprias-para-banho-no-litoral-da-paraiba",
+      "published": "Sat, 05 Sep 2026 06:15:00 GMT",
+      "periodo": "31 de agosto a 3 de setembro",
+      "validade": "11 de setembro",
+      "records": [
+        {
+          "municipio": "João Pessoa",
+          "praia": "Manaíra",
+          "ponto": "Rua Geraldo Costa",
+          "qualidade": "Imprópria",
+          "source": "Jornal da Paraíba"
+        },
+        {
+          "municipio": "João Pessoa",
+          "praia": "Penha",
+          "ponto": "Rua Ver. Mario Torres de Andrade",
+          "qualidade": "Imprópria",
+          "source": "Jornal da Paraíba"
+        },
+        {
+          "municipio": "João Pessoa",
+          "praia": "Penha",
+          "ponto": "Avenida Praia dos Pescadores",
+          "qualidade": "Imprópria",
+          "source": "Jornal da Paraíba"
+        },
+        {
+          "municipio": "Pitimbu",
+          "praia": "Maceió",
+          "ponto": "Avenida Beira Mar",
+          "qualidade": "Imprópria",
+          "source": "Jornal da Paraíba"
+        },
+        {
+          "municipio": "Pitimbu",
+          "praia": "Guarita",
+          "ponto": "Avenida Beira Mar",
+          "qualidade": "Imprópria",
+          "source": "Jornal da Paraíba"
+        }
+      ]
+    },
+    {
+      "source": "F5 Online",
+      "title": "Paraíba tem cinco trechos de praias impróprios para banho no feriado",
+      "url": "https://f5online.com.br/paraiba-tem-cinco-trechos-de-praias-improprios-para-banho-no-feriado/",
+      "published": "",
+      "periodo": null,
+      "validade": "11 de setembro",
+      "records": [
+        {
+          "municipio": "João Pessoa",
+          "praia": "Manaíra",
+          "ponto": "Rua Geraldo Costa",
+          "qualidade": "Imprópria",
+          "source": "F5 Online"
+        },
+        {
+          "municipio": "João Pessoa",
+          "praia": "Penha",
+          "ponto": "Rua Ver. Mario Torres de Andrade",
+          "qualidade": "Imprópria",
+          "source": "F5 Online"
+        },
+        {
+          "municipio": "João Pessoa",
+          "praia": "Penha",
+          "ponto": "Avenida Praia dos Pescadores",
+          "qualidade": "Imprópria",
+          "source": "F5 Online"
+        },
+        {
+          "municipio": "Pitimbu",
+          "praia": "Maceió",
+          "ponto": "Avenida Beira Mar",
+          "qualidade": "Imprópria",
+          "source": "F5 Online"
+        },
+        {
+          "municipio": "Pitimbu",
+          "praia": "Guarita",
+          "ponto": "Avenida Beira Mar",
+          "qualidade": "Imprópria",
+          "source": "F5 Online"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "name": "Jornal da Paraíba",
+      "found": true,
+      "articles": 1,
+      "error": null
+    },
+    {
+      "name": "F5 Online",
+      "found": true,
+      "articles": 7,
+      "error": null
+    },
+    {
+      "name": "Repórter PB",
+      "found": false,
+      "articles": 0,
+      "error": null
+    }
+  ],
+  "official_reference": "https://sudema.pb.gov.br/qualidade-do-ambiente/relatorios-de-balneabilidade",
+  "official_reference_automated": false
+}
