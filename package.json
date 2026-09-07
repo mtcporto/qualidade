@@ -2,5 +2,10 @@
   "name": "mare-clara",
   "private": true,
   "type": "module",
-  "scripts": { "collect": "node -e \"import('./lib/boletim.js').then(async ({collect}) => console.log(JSON.stringify(await collect(), null, 2)))\"" }
+  "scripts": {
+    "collect": "node -e \"import('./lib/boletim.js').then(async ({collect}) => console.log(JSON.stringify(await collect(), null, 2)))\""
+  },
+  "dependencies": {
+    "@libsql/client": "^0.18.0"
+  }
 }

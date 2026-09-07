@@ -18,6 +18,8 @@ O coletor usa RSS quando a matéria está no feed e busca HTML como fallback. De
 
 O cron da Vercel chama `/api/cron/boletim` às sextas-feiras, às 8h no horário da Paraíba (`11:00 UTC`). É necessário configurar `CRON_SECRET` no projeto. A função usa cache por algumas horas, e `data.json` permanece como fallback para quando as fontes estiverem indisponíveis.
 
+Quando configurado, o cron grava cada snapshot na tabela `bulletins` do Turso. A rota `/api/boletim` lê o último snapshot do banco e só faz uma coleta nova se ainda não houver dados armazenados.
+
 ## Variáveis de ambiente
 
 Os nomes padronizados para este projeto são:
