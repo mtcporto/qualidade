@@ -1,12 +1,15 @@
-import { collect } from '../lib/boletim.js';
+import { collect, needsRefresh } from '../lib/boletim.js';
 import { getLatestBulletin, saveBulletin, tursoEnabled } from '../lib/db.js';
 
 export default async function handler(request, response) {
   try {
     let payload = await getLatestBulletin();
-    if (!payload) {
-      payload = await collect();
-      await saveBulletin(payload);
+    if (!payload || needsRefresh(payload)) {
+      const collected = await collect();
+      if (collected.current || !payload) {
+        payload = collected;
+        await saveBulletin(payload);
+      }
     }
     response.setHeader('Cache-Control', 's-maxage=21600, stale-while-revalidate=86400');
     response.status(200).json({ ...payload, storage: tursoEnabled ? 'turso' : 'fallback' });

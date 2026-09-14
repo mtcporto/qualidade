@@ -6,6 +6,6 @@ export default async function handler(request, response) {
     return response.status(401).send('Unauthorized');
   }
   const payload = await collect();
-  await saveBulletin(payload);
-  response.status(200).json({ ok: true, storage: tursoEnabled ? 'turso' : 'fallback', confidence: payload.confidence, records: payload.records.length });
+  if (payload.current) await saveBulletin(payload);
+  response.status(200).json({ ok: true, saved: payload.current, storage: tursoEnabled ? 'turso' : 'fallback', confidence: payload.confidence, records: payload.records.length });
 }
