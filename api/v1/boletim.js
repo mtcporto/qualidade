@@ -16,8 +16,11 @@ export default async function handler(req, res) {
   }
 
   try {
+    const forceRefresh = req.query?.refresh === 'true';
     let payload = await getLatestBulletin();
-    if (!payload || needsRefresh(payload)) {
+    const shouldRefresh = forceRefresh || !payload || needsRefresh(payload) || (payload.records?.length === 0 && payload.confidence === 'revisar');
+
+    if (shouldRefresh) {
       const collected = await collect();
       if (collected.current || !payload) {
         payload = collected;
