@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API & MCP · Maré Clara</title>
+  <meta name="description" content="Documentação da API REST e servidor MCP (Model Context Protocol) para consulta de balneabilidade das praias da Paraíba.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1120;
+      --card-bg: #131c31;
+      --card-border: #1e293b;
+      --accent: #38bdf8;
+      --accent-hover: #0284c7;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --code-bg: #030712;
+      --tag-green: #10b981;
+      --tag-blue: #3b82f6;
+      --tag-amber: #f59e0b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      line-height: 1.6;
+      padding: 0 1.5rem 4rem;
+    }
+    header.site-header {
+      border-bottom: 1px solid var(--card-border);
+      padding: 1.25rem 0;
+      margin-bottom: 2.5rem;
+    }
+    .shell {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: inherit;
+    }
+    .brand-mark {
+      font-size: 1.75rem;
+      color: var(--accent);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+    }
+    .brand-text strong {
+      display: block;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+    }
+    .brand-text small {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .badge-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--tag-green);
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .badge-live::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--tag-green);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--tag-green);
+    }
+    h1, h2, h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+    .hero {
+      margin-bottom: 3rem;
+    }
+    .hero h1 {
+      font-size: 2.25rem;
+      margin-bottom: 0.75rem;
+    }
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 700px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+    }
+    .card-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .method-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+    .method-get { background: rgba(59, 130, 246, 0.2); color: var(--tag-blue); }
+    .method-post { background: rgba(16, 185, 129, 0.2); color: var(--tag-green); }
+    .endpoint-path {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 1rem;
+      overflow-x: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: #e2e8f0;
+      margin: 1rem 0;
+    }
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent);
+      background: rgba(56, 189, 248, 0.1);
+      padding: 0.15rem 0.35rem;
+      border-radius: 4px;
+      font-size: 0.875em;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    .tool-list {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .tool-item {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      padding: 1rem;
+    }
+    .tool-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+    .tool-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .btn-copy {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+      color: var(--text);
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn-copy:hover {
+      background: var(--accent);
+      color: #000;
+      border-color: var(--accent);
+    }
+    .rules-box {
+      border-left: 3px solid var(--accent);
+      padding-left: 1rem;
+      margin: 1.5rem 0;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding-top: 2rem;
+      margin-top: 3rem;
+      display: flex;
+      justify-content: space-between;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="/" aria-label="Maré Clara início">
+        <span class="brand-mark" aria-hidden="true">≈</span>
+        <div class="brand-text">
+          <strong>Maré Clara</strong>
+          <small>Balneabilidade da Paraíba</small>
+        </div>
+      </a>
+      <div class="nav-links">
+        <span class="badge-live">API Ativa</span>
+        <a href="/">← Aplicação</a>
+        <a href="/llms.txt">llms.txt</a>
+        <a href="/api/v1/openapi.json">OpenAPI</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <h1>API & Servidor MCP</h1>
+      <p>Acesse dados oficiais de balneabilidade das praias paraibanas de forma estruturada para aplicações, automações e agentes inteligentes de IA.</p>
+    </section>
+
+    <!-- MCP SECTION -->
+    <section class="card">
+      <div class="card-title-row">
+        <div>
+          <h2>Servidor MCP (Model Context Protocol)</h2>
+          <span style="color: var(--text-muted); font-size: 0.9rem;">Para agentes de IA (Claude Desktop, Cursor, Antigravity, ChatGPT)</span>
+        </div>
+        <span class="method-tag method-post">Streamable HTTP</span>
+      </div>
+
+      <p style="color: var(--text-muted); font-size: 0.95rem;">
+        Endpoint compatível com a especificação oficial MCP via <code>POST</code>. Não exige autenticação.
+      </p>
+
+      <pre><code>URL do Servidor: https://qualidade-nine.vercel.app/mcp</code></pre>
+
+      <h3 style="margin-top: 1.5rem; font-size: 1.1rem;">Ferramentas Registradas</h3>
+      <div class="tool-list">
+        <div class="tool-item">
+          <div class="tool-name">consultar_praia(praia, municipio?)</div>
+          <div class="tool-desc">Verifica se uma praia específica possui trecho impróprio no boletim vigente, detalhando os pontos exatos de coleta e orientações práticas de banho.</div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-name">listar_improprias(municipio?)</div>
+          <div class="tool-desc">Lista todos os trechos classificados como impróprios para banho no litoral da Paraíba (com filtro opcional por município).</div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-name">boletim_atual()</div>
+          <div class="tool-desc">Retorna o resumo do boletim ativo da SUDEMA: datas de coleta, validade, total de trechos impróprios, pontos monitorados e fontes.</div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-name">listar_praias_monitoradas(municipio?)</div>
+          <div class="tool-desc">Catálogo completo dos municípios e praias acompanhadas pelo órgão ambiental na Paraíba.</div>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 1.5rem; font-size: 1.1rem;">Como Configurar no Claude Desktop / Cursor</h3>
+      <pre><code>{
+  "mcpServers": {
+    "mare-clara": {
+      "url": "https://qualidade-nine.vercel.app/mcp"
+    }
+  }
+}</code></pre>
+    </section>
+
+    <!-- REST API SECTION -->
+    <section class="card">
+      <h2>Endpoints REST (JSON)</h2>
+      <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">Todas as respostas acompanham cabeçalhos de CORS e cache inteligente (<code>stale-while-revalidate</code>).</p>
+
+      <!-- Endpoint 1 -->
+      <div style="border-top: 1px solid var(--card-border); padding-top: 1.25rem; margin-top: 1.25rem;">
+        <div class="card-title-row">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <span class="method-tag method-get">GET</span>
+            <span class="endpoint-path">/api/v1/boletim</span>
+          </div>
+          <a class="btn-copy" href="/api/v1/boletim" target="_blank" rel="noopener">Testar Rota ↗</a>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Retorna o relatório oficial completo vigente: datas de coleta e validade, trechos impróprios, confiança e matérias da imprensa.</p>
+        <pre><code>curl -s https://qualidade-nine.vercel.app/api/v1/boletim</code></pre>
+      </div>
+
+      <!-- Endpoint 2 -->
+      <div style="border-top: 1px solid var(--card-border); padding-top: 1.25rem; margin-top: 1.25rem;">
+        <div class="card-title-row">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <span class="method-tag method-get">GET</span>
+            <span class="endpoint-path">/api/v1/praias</span>
+          </div>
+          <a class="btn-copy" href="/api/v1/praias?municipio=joao-pessoa" target="_blank" rel="noopener">Testar Rota ↗</a>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Consulta o catálogo de praias e seus status atuais (Própria / Imprópria). Suporta filtros por query parameters: <code>municipio</code>, <code>status</code> (propria|impropria) e busca por texto <code>q</code>.</p>
+        <pre><code>curl -s "https://qualidade-nine.vercel.app/api/v1/praias?municipio=joao-pessoa&status=impropria"</code></pre>
+      </div>
+
+      <!-- Endpoint 3 -->
+      <div style="border-top: 1px solid var(--card-border); padding-top: 1.25rem; margin-top: 1.25rem;">
+        <div class="card-title-row">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <span class="method-tag method-get">GET</span>
+            <span class="endpoint-path">/api/v1/openapi.json</span>
+          </div>
+          <a class="btn-copy" href="/api/v1/openapi.json" target="_blank" rel="noopener">Ver JSON ↗</a>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Especificação OpenAPI 3.1.0 completa das rotas da API.</p>
+      </div>
+    </section>
+
+    <!-- RULES SECTION -->
+    <section class="card">
+      <h2>Regras de Domínio e Balneabilidade</h2>
+      <div class="rules-box">
+        <strong>1. Regra dos 100 Metros da SUDEMA:</strong> A classificação "imprópria" aplica-se a uma faixa de 100 metros à direita e 100 metros à esquerda do ponto específico de coleta. Fora dessa faixa delimitada, o restante da praia é considerado liberado.<br><br>
+        <strong>2. Critério Própria vs. Imprópria:</strong> A SUDEMA monitora aproximadamente 62 pontos em 8 municípios litorâneos (João Pessoa, Cabedelo, Lucena, Pitimbu, Conde, Mataraca, Baía da Traição e Rio Tinto). As praias que <em>não constam</em> na lista de trechos impróprios estão consideradas próprias pelo órgão ambiental.<br><br>
+        <strong>3. Ciclo Semanal:</strong> Novos boletins são divulgados semanalmente, tradicionalmente nas sextas-feiras, com validade até a emissão do boletim seguinte.
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell">
+    <span>Maré Clara · Projeto independente com dados da SUDEMA</span>
+    <span>Documentação técnica para IA &amp; Desenvolvedores</span>
+  </footer>
+</body>
+</html>

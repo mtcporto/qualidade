@@ -1,66 +1,104 @@
 {
-  "generated_at": "2026-09-14T22:16:11.430Z",
-  "periodo": "8 a 10 de setembro",
-  "validade": "18 de setembro",
+  "generated_at": "2026-11-03T04:14:39.736Z",
+  "periodo": "26 a 27 de outubro",
+  "validade": "6 de novembro",
   "confidence": "alta",
   "current": true,
   "report_sources": 2,
   "records": [
     {
       "municipio": "João Pessoa",
-      "praia": "Seixas",
-      "ponto": "na altura da Rua das Jangadas",
+      "praia": "Jacarapé",
+      "ponto": "Rua Manoel Candido Soares",
       "qualidade": "Imprópria",
-      "sources": ["Paraíba Já", "Jornal da Paraíba"],
+      "sources": [
+        "Paraíba Já",
+        "Jornal da Paraíba"
+      ],
       "confidence": "alta"
     },
     {
       "municipio": "João Pessoa",
-      "praia": "Penha",
-      "ponto": "em frente à Rua Vereador Mário Torres de Andrade",
+      "praia": "Sol",
+      "ponto": "Rua Manoel Candido Soares",
       "qualidade": "Imprópria",
-      "sources": ["Paraíba Já", "Jornal da Paraíba"],
-      "confidence": "alta"
-    },
-    {
-      "municipio": "João Pessoa",
-      "praia": "Penha",
-      "ponto": "em frente à Avenida Praia dos Pescadores",
-      "qualidade": "Imprópria",
-      "sources": ["Paraíba Já", "Jornal da Paraíba"],
-      "confidence": "alta"
-    },
-    {
-      "municipio": "Pitimbu",
-      "praia": "Maceió",
-      "ponto": "na Avenida Beira-Mar",
-      "qualidade": "Imprópria",
-      "sources": ["Paraíba Já", "Jornal da Paraíba"],
-      "confidence": "alta"
-    },
-    {
-      "municipio": "Pitimbu",
-      "praia": "Guarita",
-      "ponto": "na Avenida Beira-Mar",
-      "qualidade": "Imprópria",
-      "sources": ["Paraíba Já", "Jornal da Paraíba"],
+      "sources": [
+        "Paraíba Já",
+        "Jornal da Paraíba"
+      ],
       "confidence": "alta"
     }
   ],
   "articles": [
     {
       "source": "Paraíba Já",
-      "title": "Cinco trechos de praias estão impróprios para banho na PB; veja locais",
-      "url": "https://paraibaja.com.br/cinco-trechos-de-praias-estao-improprios-para-banho-na-pb-veja-locais/",
-      "periodo": "8 a 10 de setembro",
-      "validade": "18 de setembro"
+      "title": "Litoral da Paraíba tem apenas um trecho impróprio para banho neste feriadão",
+      "url": "https://paraibaja.com.br/litoral-da-paraiba-tem-apenas-um-trecho-improprio-para-banho-neste-feriadao/",
+      "published": "",
+      "periodo": "26 a 27 de outubro",
+      "validade": "6 de novembro",
+      "records": [
+        {
+          "municipio": "João Pessoa",
+          "praia": "Jacarapé",
+          "ponto": "Rua Manoel Candido Soares",
+          "qualidade": "Imprópria"
+        },
+        {
+          "municipio": "João Pessoa",
+          "praia": "Sol",
+          "ponto": "Rua Manoel Candido Soares",
+          "qualidade": "Imprópria"
+        }
+      ]
     },
     {
       "source": "Jornal da Paraíba",
-      "title": "Cinco trechos de praia estão impróprios para banho no litoral da Paraíba; saiba quais",
+      "title": "Apenas um trecho de praia está impróprio para banho no litoral da Paraíba; saiba qual",
       "url": "https://jornaldaparaiba.com.br/meio-ambiente/praias-improprias-para-banho-no-litoral-da-paraiba",
-      "periodo": "8 a 10 de setembro",
-      "validade": "18 de setembro"
+      "published": "Sat, 31 Oct 2026 08:13:00 GMT",
+      "periodo": "26 a 27 de outubro",
+      "validade": "6 de novembro",
+      "records": [
+        {
+          "municipio": "João Pessoa",
+          "praia": "Jacarapé",
+          "ponto": "Rua Manoel Candido Soares",
+          "qualidade": "Imprópria"
+        },
+        {
+          "municipio": "João Pessoa",
+          "praia": "Sol",
+          "ponto": "Rua Manoel Candido Soares",
+          "qualidade": "Imprópria"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "name": "Paraíba Já",
+      "found": true,
+      "articles": 10,
+      "error": null
+    },
+    {
+      "name": "Jornal da Paraíba",
+      "found": true,
+      "articles": 11,
+      "error": null
+    },
+    {
+      "name": "F5 Online",
+      "found": true,
+      "articles": 11,
+      "error": null
+    },
+    {
+      "name": "Repórter PB",
+      "found": true,
+      "articles": 1,
+      "error": null
     }
   ],
   "official_reference": "https://sudema.pb.gov.br/qualidade-do-ambiente/qualidade-dos-mares",

@@ -1,5 +1,11 @@
 {
   "crons": [
     { "path": "/api/cron/boletim", "schedule": "0 17 * * 6" }
+  ],
+  "rewrites": [
+    { "source": "/mcp", "destination": "/api/mcp" },
+    { "source": "/llms.txt", "destination": "/api/llms" },
+    { "source": "/api-docs", "destination": "/api-docs.html" },
+    { "source": "/api/v1/openapi.json", "destination": "/api/v1/openapi" }
   ]
 }

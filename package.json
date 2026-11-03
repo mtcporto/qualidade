@@ -3,10 +3,13 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "test": "node --test tests/api.test.js",
     "collect": "node -e \"import('./lib/boletim.js').then(async ({collect}) => console.log(JSON.stringify(await collect(), null, 2)))\""
   },
   "dependencies": {
-    "@libsql/client": "^0.18.0"
+    "@libsql/client": "^0.18.0",
+    "@modelcontextprotocol/server": "^2.4.0",
+    "zod": "^4.6.7"
   },
   "engines": {
     "node": "24.x"
